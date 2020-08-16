@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import App from "./App";
 import GraphGrid from './GraphGrid/GraphGrid'
+import Header from './Header/Header'
 
 describe("App", () => {
   let appWrapper;
@@ -14,7 +15,8 @@ describe("App", () => {
     expect(GraphGrids).toHaveLength(1);
   });
 
-  it("renders the hearder", ()=>{
-    const GraphGrids = appWrapper.find(<header></header>);
-  })
+  it("renders the header", ()=>{
+    const Headers = appWrapper.find(Header);
+    expect(Headers).toHaveLength(1);
+  });
 });

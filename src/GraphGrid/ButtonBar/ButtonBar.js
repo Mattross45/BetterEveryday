@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const ButtonBar = () => {
-    return ( <div>
-        <button>Good Day</button>
-        <button>Bad Day</button>
-    </div> );
-}
- 
+	return (
+		<div>
+			<button className="goodDay">Good Day</button>
+			<button className="badDay">Bad Day</button>
+		</div>
+	);
+};
+
 export default ButtonBar;

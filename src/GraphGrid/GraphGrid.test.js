@@ -25,6 +25,7 @@ describe("GraphGrid", () => {
 		const state = gridWrapper.state();
 		expect(state).not.toBeNull();
 		expect(state.data).toBeDefined();
+		expect(state.dataList).toBeDefined();
 	});
 
 	it("passes down data state to graph as prop", () => {
@@ -32,4 +33,18 @@ describe("GraphGrid", () => {
 		const graphs = gridWrapper.find(LineGraph);
 		expect(graphs.props().data).toEqual(state.data);
 	});
+
+	it("passes down an onClick prop to buttonBar", () => {
+		const buttonBar = gridWrapper.find(ButtonBar);
+		expect(buttonBar.prop("onClick")).toBeDefined;
+	});
+
+	it("adds a element to dataList when addADay is called", () => {
+		const formerDataLength = gridWrapper.state().dataList.length;
+		const instance = gridWrapper.instance();
+		instance.addADay();
+		const newDataLength = gridWrapper.state().dataList.length;
+		expect(newDataLength).toEqual(formerDataLength + 1);
+	});
+
 });

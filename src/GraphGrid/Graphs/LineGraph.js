@@ -10,8 +10,8 @@ const LineGraph = (props) => {
 				xScale={{ type: "point" }}
 				yScale={{
 					type: "linear",
-					min: "auto",
-					max: "auto",
+					min: -5,
+					max: 5,
 					stacked: true,
 					reverse: false,
 				}}
@@ -22,7 +22,7 @@ const LineGraph = (props) => {
 					tickSize: 5,
 					tickPadding: 5,
 					tickRotation: 0,
-					legend: "transportation",
+					legend: "days",
 					legendOffset: 36,
 					legendPosition: "middle",
 				}}
@@ -31,7 +31,7 @@ const LineGraph = (props) => {
 					tickSize: 5,
 					tickPadding: 5,
 					tickRotation: 0,
-					legend: "count",
+					legend: "progress",
 					legendOffset: -40,
 					legendPosition: "middle",
 				}}

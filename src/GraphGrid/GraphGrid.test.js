@@ -24,14 +24,14 @@ describe("GraphGrid", () => {
 	it("has state", () => {
 		const state = gridWrapper.state();
 		expect(state).not.toBeNull();
-		expect(state.data).toBeDefined();
 		expect(state.dataList).toBeDefined();
 	});
 
-	it("passes down data state to graph as prop", () => {
+	it("passes down data to graph as prop", () => {
 		const state = gridWrapper.state();
 		const graphs = gridWrapper.find(LineGraph);
-		expect(graphs.props().data).toEqual(state.data);
+		const dataState = state.data;
+		expect(graphs.props().data).toBeDefined();
 	});
 
 	it("passes down an onClick prop to buttonBar", () => {
@@ -53,5 +53,15 @@ describe("GraphGrid", () => {
 		instance.addADay(false);
 		const newDataLength = gridWrapper.state().dataList.length;
 		expect(newDataLength).toEqual(formerDataLength + 1);
+	});
+
+	it("preps data for chart when prepData is called", () => {
+		const dataList = [1, 2.6, 6, -12.7];
+		const instance = gridWrapper.instance();
+		const prepedData = instance.prepData(dataList);
+		expect(prepedData.isArray);
+		expect(prepedData[0].id).toBeDefined();
+		expect(prepedData[0].color).toBeDefined();
+		expect(prepedData[0].data).toBeDefined();
 	});
 });

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./GraphGrid.css";
 import LineGraph from "./Graphs/LineGraph";
 import ButtonBar from "./ButtonBar/ButtonBar";
-import {transformDataFromListToChart} from "../util";
+import { transformDataFromListToChart, newDay } from "../util";
 
 const transformRate = 0.01;
 
@@ -25,8 +25,9 @@ class GraphGrid extends Component {
 		this.addADay = this.addADay.bind(this);
 	}
 
-	addADay = () => {
-		this.state.dataList.push(0)
+	addADay = (positiveOrNot) => {
+		this.setState({ dataList: newDay(this.state.dataList, positiveOrNot) });
+		
 	};
 
 	render() {

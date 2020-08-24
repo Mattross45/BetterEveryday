@@ -39,12 +39,19 @@ describe("GraphGrid", () => {
 		expect(buttonBar.prop("onClick")).toBeDefined;
 	});
 
-	it("adds a element to dataList when addADay is called", () => {
+	it("adds a element to dataList when addADay is called with true parameter", () => {
 		const formerDataLength = gridWrapper.state().dataList.length;
 		const instance = gridWrapper.instance();
-		instance.addADay();
+		instance.addADay(true);
 		const newDataLength = gridWrapper.state().dataList.length;
 		expect(newDataLength).toEqual(formerDataLength + 1);
 	});
 
+	it("adds a element to dataList when addADay is called with false parameter", () => {
+		const formerDataLength = gridWrapper.state().dataList.length;
+		const instance = gridWrapper.instance();
+		instance.addADay(false);
+		const newDataLength = gridWrapper.state().dataList.length;
+		expect(newDataLength).toEqual(formerDataLength + 1);
+	});
 });

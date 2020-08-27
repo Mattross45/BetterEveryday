@@ -1,11 +1,13 @@
 const express = require("express");
-const db = require("./testDatabase/testDB");
+const { db } = require("./testDatabase/testDB");
 const app = express();
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 4001;
 
 app.use(bodyParser());
+app.use(cors());
 
 app.get("/:id", async (req, res) => {
 	res.send(await db.getByUserId(req.params.id));
@@ -16,6 +18,8 @@ app.put("/:id/:name", async (req, res) => {
 	res.send(await db.getGraphByIdAndName(req.params.id, req.params.name));
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {
+	console.log(`listening at port ${PORT}`);
+});
 
 module.exports = app;

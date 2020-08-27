@@ -17,4 +17,11 @@ const newDay = (list, positiveDay, rate = 0.01) => {
 		: [1];
 };
 
-export { transformDataFromListToChart, newDay };
+const getDataFromUser = async (id) => {
+	const response = await fetch(`http://localhost:4001/${id}`, {
+		method: "GET",
+	});
+	return response.json();
+};
+
+export { transformDataFromListToChart, newDay, getDataFromUser };

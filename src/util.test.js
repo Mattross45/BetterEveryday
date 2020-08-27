@@ -1,4 +1,5 @@
-import { transformDataFromListToChart, newDay } from "./util";
+import { transformDataFromListToChart, newDay, getDataFromUser } from "./util";
+import { graph1, graph2, graph3, graph4 } from "./Server/testDatabase/testDB";
 
 describe("transformDataFromListToChart", () => {
 	it("returns an empty list when empty list is given", () => {
@@ -55,11 +56,16 @@ describe("newDay", () => {
 		const list = [1, 2];
 		const rate = 0.1;
 		expect(newDay(list, true, rate).slice(-1)[0]).toEqual(2.2);
-    });
-    
-    it('returns the correct list', ()=>{
-        const list = [1,45,1.45];
-        expect(newDay(list,true)).toEqual([1,45,1.45,1.46])
+	});
 
-    })
+	it("returns the correct list", () => {
+		const list = [1, 45, 1.45];
+		expect(newDay(list, true)).toEqual([1, 45, 1.45, 1.46]);
+	});
+});
+
+describe("fetching from server", () => {
+	it("return the data from the server with getDataFromUser", async () => {
+		expect(await getDataFromUser("123")).toEqual([graph1, graph3]);
+	});
 });

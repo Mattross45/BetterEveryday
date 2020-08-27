@@ -1,4 +1,4 @@
-import { Database } from "./database";
+const { Database } = require("./database");
 
 const db = new Database();
 
@@ -32,5 +32,4 @@ db.add(graph2);
 db.add(graph3);
 db.add(graph4);
 
-
-module.exports = db;
+module.exports = { db, graph1, graph2, graph3, graph4 };

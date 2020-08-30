@@ -47,6 +47,11 @@ describe("server", () => {
 		expect(res.body).toEqual([graph1, graph3]);
 	});
 
+	it("get data from specific id and name with GET  @/:id/:name", async () => {
+		const res = await request(app).get("/123/motivation");
+		expect(res.body).toEqual(graph1);
+	});
+
 	it("updates a graph with PUT@:id/:name", async () => {
 		const res = await request(app).put("/543/gains").send({ number: 5 });
 		expect(res.body.dataPoints[res.body.dataPoints.length - 1]).toEqual(5);

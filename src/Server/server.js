@@ -6,11 +6,16 @@ const cors = require("cors");
 
 const PORT = process.env.PORT || 4001;
 
-app.use(bodyParser());
+app.use(bodyParser.json());
 app.use(cors());
+
 
 app.get("/:id", async (req, res) => {
 	res.send(await db.getByUserId(req.params.id));
+});
+
+app.get("/:id/:name", async (req, res) => {
+	res.send(await db.getGraphByIdAndName(req.params.id, req.params.name));
 });
 
 app.put("/:id/:name", async (req, res) => {

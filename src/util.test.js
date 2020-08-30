@@ -1,5 +1,18 @@
-import { transformDataFromListToChart, newDay, getDataFromUser } from "./util";
+import {
+	transformDataFromListToChart,
+	newDay,
+	getDataFromUser,
+	getGraphFromUserAndName,
+	updateGraph,
+} from "./util";
 import { graph1, graph2, graph3, graph4 } from "./Server/testDatabase/testDB";
+
+const updatedGraph1 = {
+	userId: "123",
+	graphName: "motivation",
+	color: "hsl(178, 79%, 10%)",
+	dataPoints: [1, 2, 2.4, 4.5, 5],
+};
 
 describe("transformDataFromListToChart", () => {
 	it("returns an empty list when empty list is given", () => {
@@ -67,5 +80,12 @@ describe("newDay", () => {
 describe("fetching from server", () => {
 	it("return the data from the server with getDataFromUser", async () => {
 		expect(await getDataFromUser("123")).toEqual([graph1, graph3]);
+	});
+	it("return the data from the server with getGraphFromUserAndName", async () => {
+		expect(await getGraphFromUserAndName("123", "motivation")).toEqual(graph1);
+	});
+
+	it("updates graph with updateGraph(id, name, addedValue)", async () => {
+		expect(await updateGraph("123", "motivation", 5)).toEqual(updatedGraph1);
 	});
 });

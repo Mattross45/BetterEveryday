@@ -28,7 +28,6 @@ describe("when passed down a prop", () => {
 
 	beforeAll(() => {
 		spy = jest.fn();
-		const onClick = spy;
 		wrapper = shallow(<ButtonBar onClick={spy} />);
 	});
 

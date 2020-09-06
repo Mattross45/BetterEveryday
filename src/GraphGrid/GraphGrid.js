@@ -2,13 +2,24 @@ import React, { Component } from "react";
 import "./GraphGrid.css";
 import LineGraph from "./Graphs/LineGraph";
 import ButtonBar from "./ButtonBar/ButtonBar";
-import { transformDataFromListToChart, newDay } from "../util";
+import {
+	transformDataFromListToChart,
+	newDay,
+	getGraphFromUserAndName,
+} from "../util";
 
 const transformRate = 0.1;
 
 const dataList = [1];
+const userId = "123";
+const graphName = "motivation";
 
-const customState = { dataList: dataList };
+const customState = {
+	dataList: [],
+	userId: "",
+	graphName: "",
+	color:""
+};
 
 class GraphGrid extends Component {
 	constructor(props) {
@@ -19,7 +30,9 @@ class GraphGrid extends Component {
 	}
 
 	addADay = (positiveOrNot) => {
-		this.setState({ dataList: newDay(this.state.dataList, positiveOrNot, transformRate) });
+		this.setState({
+			dataList: newDay(this.state.dataList, positiveOrNot, transformRate),
+		});
 	};
 
 	prepData = (dataList) => {
@@ -31,6 +44,11 @@ class GraphGrid extends Component {
 			},
 		];
 	};
+
+	async getDataFromUserAndName(userId, graphName) {
+		const response = await getGraphFromUserAndName(userId, graphName);
+		this.setState(response)
+	}
 
 	render() {
 		return (

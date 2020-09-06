@@ -3,16 +3,16 @@ import { ResponsiveLine } from "@nivo/line";
 
 const LineGraph = (props) => {
 	return (
-		<div style={{ height: 600 }}>
+		<div style={{ height: 600, width: 1200 }}>
 			<ResponsiveLine
 				data={props.data}
 				margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-				xScale={{ type: "point" }}
+				xScale={{ type: "linear" }}
 				yScale={{
 					type: "linear",
-					min: -5,
-					max: 5,
-					stacked: true,
+					min: "auto",
+					max: "auto",
+					stacked: false,
 					reverse: false,
 				}}
 				axisTop={null}

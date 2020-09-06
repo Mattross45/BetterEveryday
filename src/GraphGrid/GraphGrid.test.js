@@ -64,4 +64,10 @@ describe("GraphGrid", () => {
 		expect(prepedData[0].color).toBeDefined();
 		expect(prepedData[0].data).toBeDefined();
 	});
+
+	describe("getDataFromUserAndName", () => {
+		it("fetches data from server when server returns a successful response", () => {
+		
+		});
+	});
 });
